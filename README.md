@@ -1,5 +1,5 @@
 # Keypad
-Currently still Work in progres!
+Currently still Work in progress!
 
  The Hardwarre for a simple 3x4 Keypad featuring a USB-C Interface
  
