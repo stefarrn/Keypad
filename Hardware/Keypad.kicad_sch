@@ -1640,7 +1640,7 @@
     (uuid e7f7fe4f-ebfb-471a-976d-2ea6e6769e03)
     (property "Reference" "D14" (id 0) (at 64.77 142.24 0))
     (property "Value" "LED" (id 1) (at 64.77 147.32 0))
-    (property "Footprint" "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder" (id 2) (at 64.77 144.78 0)
+    (property "Footprint" "LED_SMD:LED_0603_1608Metric" (id 2) (at 64.77 144.78 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (id 3) (at 64.77 144.78 0)
@@ -1674,7 +1674,7 @@
     (uuid f4e1b81e-f02a-451a-905f-f000b6b75e92)
     (property "Reference" "D13" (id 0) (at 64.77 132.08 0))
     (property "Value" "LED" (id 1) (at 64.77 137.16 0))
-    (property "Footprint" "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder" (id 2) (at 64.77 134.62 0)
+    (property "Footprint" "LED_SMD:LED_0603_1608Metric" (id 2) (at 64.77 134.62 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (id 3) (at 64.77 134.62 0)
@@ -1795,10 +1795,10 @@
       (reference "D12") (unit 1) (value "1N4148") (footprint "Diode_SMD:D_MELF")
     )
     (path "/f4e1b81e-f02a-451a-905f-f000b6b75e92"
-      (reference "D13") (unit 1) (value "LED") (footprint "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder")
+      (reference "D13") (unit 1) (value "LED") (footprint "LED_SMD:LED_0603_1608Metric")
     )
     (path "/e7f7fe4f-ebfb-471a-976d-2ea6e6769e03"
-      (reference "D14") (unit 1) (value "LED") (footprint "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder")
+      (reference "D14") (unit 1) (value "LED") (footprint "LED_SMD:LED_0603_1608Metric")
     )
     (path "/dc9e1614-34a9-4e22-a9cf-c8e55ec48f0f"
       (reference "R1") (unit 1) (value "220R") (footprint "Resistor_SMD:R_1206_3216Metric")
