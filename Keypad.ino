@@ -8,8 +8,9 @@ bool keysPressed[4][3];
 bool lastKeysPressed[4][3];
 
 //keycodes for single keypress
-const int keyMap[4][3] = {
-  { 49, 50, 51 },
+//https://theasciicode.com.ar/
+const char keyMap[4][3] = {
+  { 65, 66, 67 },
   { 52, 53, 54 },
   { 55, 56, 57 },
   { 0, 48, 0 }
@@ -22,6 +23,8 @@ const int keys[4][3] = {
   { 6, 7, 8 },
   { 9, 10, 11 }
 };
+
+const int numpadKey[] = {KEY_KP_0, KEY_KP_1, KEY_KP_2, KEY_KP_3, KEY_KP_4, KEY_KP_5, KEY_KP_6, KEY_KP_7, KEY_KP_8, KEY_KP_9};
 
 void setup() {
   Serial.begin(115200);
@@ -47,13 +50,13 @@ void loop() {
     for (int j = 0; j < 3; j++) {
       //key assignments:
       switch (keys[i][j]) {
-        
+
         //special macros
         case 9:
           textMacro(i, j, "max.mustermann@generic-mailservice.com");
           break;
         case 11:
-          textMacro(i, j, ":-)");
+          numpadAscii(i, j, 159);
           break;
 
         //all other keys: press key according to keyMap
@@ -73,7 +76,7 @@ void singleKeypress(int i, int j) {
     Keyboard.press(keyMap[i][j]);
 
   //if the key was pressed before, release it
-  } else if(lastKeysPressed[i][j]) {
+  } else if (lastKeysPressed[i][j]) {
     Keyboard.release(keyMap[i][j]);
   }
 }
@@ -86,6 +89,27 @@ void textMacro(int i, int j, String s) {
     for (int k = 0; k < s.length(); k++) {
       Keyboard.write(s[k]);
     }
+  }
+}
+
+void numpadAscii(int i, int j, int c) {
+  //only activate on rising edge
+  if (keysPressed[i][j] && !lastKeysPressed[i][j]) {
+    Serial.println("numpad ascii macro " + String(c));
+
+    Keyboard.press(KEY_LEFT_ALT);
+
+    char s[4];
+    itoa(c, s, 10);
+
+    for (int k = 0; k < 4; k++) {
+      if (s[k] == 0) continue;
+      int n = int(s[k]) - 48;
+
+      Keyboard.write(numpadKey[n]);
+    }
+
+    Keyboard.release(KEY_LEFT_ALT);
   }
 }
 
