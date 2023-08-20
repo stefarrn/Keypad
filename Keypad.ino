@@ -11,8 +11,8 @@ bool lastKeysPressed[4][3];
 //https://theasciicode.com.ar/
 const char keyMap[4][3] = {
   { 65, 66, 67 },
-  { 52, 53, 54 },
-  { 55, 56, 57 },
+  { 68, 69, 70 },
+  { 71, 72, 73 },
   { 0, 48, 0 }
 };
 
@@ -52,11 +52,20 @@ void loop() {
       switch (keys[i][j]) {
 
         //special macros
+        case 0:
+          numpadAscii(i, j, 231);
+          break;
+        case 1:
+          numpadAscii(i, j, 232);
+          break;
+        case 2:
+          numpadAscii(i, j, 233);
+          break;
         case 9:
           textMacro(i, j, "max.mustermann@generic-mailservice.com");
           break;
         case 11:
-          numpadAscii(i, j, 159);
+          numpadAscii(i, j, 236);
           break;
 
         //all other keys: press key according to keyMap
@@ -99,6 +108,7 @@ void numpadAscii(int i, int j, int c) {
 
     Keyboard.press(KEY_LEFT_ALT);
 
+    //max. code length 4
     char s[4];
     itoa(c, s, 10);
 
