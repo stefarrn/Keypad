@@ -3,7 +3,7 @@ Currently still Work in progress!
 
  The Hardwarre for a simple 3x4 Keypad featuring a USB-C Interface
  
-![image](https://github.com/stefarrn/Keypad/assets/80580541/904292d7-cf19-481e-b8b9-9b7c2c5153d6)
+![image](https://github.com/stefarrn/Keypad/assets/80580541/8aaffcc6-a7a6-4a68-8a30-5b9c2dfa6b74)
 
 Sources:
 https://wiki.seeedstudio.com/Seeeduino-XIAO/#resourses
