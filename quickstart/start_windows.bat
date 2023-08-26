@@ -1,0 +1,2 @@
+node startserial.js
+pause
