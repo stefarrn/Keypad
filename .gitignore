@@ -1,2 +1,5 @@
 #kicad backups
 Hardware/Keypad-Backups/
+
+#vscode environment settings
+.vscode/
