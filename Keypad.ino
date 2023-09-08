@@ -1,27 +1,25 @@
 #include "Keyboard.h"
 
 //pins
-const int row[4] = { 0, 1, 2, 3 };
-const int col[3] = { 4, 5, 6 };
+const int col[4] = { 0, 1, 2, 3 };
+const int row[3] = { 4, 5, 6 };
 
 bool keysPressed[4][3];
 bool lastKeysPressed[4][3];
 
 //keycodes for single keypress
 //https://theasciicode.com.ar/
-const char keyMap[4][3] = {
-  { KEY_F13, KEY_F14, KEY_F15 },
-  { KEY_F16, KEY_F17, KEY_F18 },
-  { KEY_F19, KEY_F20, KEY_F21 },
-  { KEY_F22, KEY_F23, KEY_F24 }
+const char keyMap[3][4] = {
+  { KEY_F13, KEY_F14, KEY_F15, KEY_F16 },
+  { KEY_F17, KEY_F18, KEY_F19, KEY_F20 },
+  { KEY_F21, KEY_F22, KEY_F23, KEY_F24 }
 };
 
 //only for key assignments
-const int keys[4][3] = {
-  { 1, 2, 3 },
-  { 4, 5, 6 },
-  { 7, 8, 9 },
-  { 10, 11, 12 }
+const int keys[3][4] = {
+  { 1, 2, 3, 4 },
+  { 5, 6, 7, 8 },
+  { 9, 10, 11, 12 }
 };
 
 const int numpadKey[] = { KEY_KP_0, KEY_KP_1, KEY_KP_2, KEY_KP_3, KEY_KP_4, KEY_KP_5, KEY_KP_6, KEY_KP_7, KEY_KP_8, KEY_KP_9 };
@@ -34,11 +32,11 @@ void setup() {
   Keyboard.begin(KeyboardLayout_de_DE);
 
   for (int i = 0; i < 4; i++) {
-    pinMode(row[i], OUTPUT);
+    pinMode(col[i], OUTPUT);
   }
 
   for (int i = 0; i < 3; i++) {
-    pinMode(col[i], INPUT_PULLDOWN);
+    pinMode(row[i], INPUT_PULLDOWN);
   }
 }
 
@@ -48,7 +46,7 @@ void loop() {
   for (int i = 0; i < 4; i++) {
     for (int j = 0; j < 3; j++) {
       //key assignments:
-      switch (keys[i][j]) {
+      switch (keys[j][i]) {
         //special macros
         case 1:
           numpadAscii(i, j, 231);
@@ -69,13 +67,13 @@ void loop() {
 void singleKeypress(int i, int j) {
   //send keypress if button is pressed
   if (keysPressed[i][j]) {
-    if (!lastKeysPressed[i][j]) Serial.println("single keypress " + String(keyMap[i][j]));
+    if (!lastKeysPressed[i][j]) Serial.println("single keypress " + String(keyMap[j][i]));
 
-    Keyboard.press(keyMap[i][j]);
+    Keyboard.press(keyMap[j][i]);
 
   //if the key was pressed before, release it
   } else if (lastKeysPressed[i][j]) {
-    Keyboard.release(keyMap[i][j]);
+    Keyboard.release(keyMap[j][i]);
   }
 }
 
@@ -114,18 +112,18 @@ void numpadAscii(int i, int j, int c) {
 
 void updateKeysPressed() {
   for (int i = 0; i < 4; i++) {
-    digitalWrite(row[i], HIGH);
+    digitalWrite(col[i], HIGH);
 
     for (int j = 0; j < 3; j++) {
       lastKeysPressed[i][j] = keysPressed[i][j];
 
-      if (digitalRead(col[j]) == HIGH) {
+      if (digitalRead(row[j]) == HIGH) {
         keysPressed[i][j] = true;
       } else {
         keysPressed[i][j] = false;
       }
     }
 
-    digitalWrite(row[i], LOW);
+    digitalWrite(col[i], LOW);
   }
 }
