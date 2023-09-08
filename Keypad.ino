@@ -4,6 +4,9 @@
 const int col[4] = { 0, 1, 2, 3 };
 const int row[3] = { 4, 5, 6 };
 
+const int led_debug = 7;
+const int led_mode = 8;
+
 bool keysPressed[4][3];
 bool lastKeysPressed[4][3];
 
@@ -25,12 +28,6 @@ const int keys[3][4] = {
 const int numpadKey[] = { KEY_KP_0, KEY_KP_1, KEY_KP_2, KEY_KP_3, KEY_KP_4, KEY_KP_5, KEY_KP_6, KEY_KP_7, KEY_KP_8, KEY_KP_9 };
 
 void setup() {
-  Serial.begin(115200);
-  while (!Serial && millis() < 1000);
-  Serial.println("serial initialized");
-
-  Keyboard.begin(KeyboardLayout_de_DE);
-
   for (int i = 0; i < 4; i++) {
     pinMode(col[i], OUTPUT);
   }
@@ -38,6 +35,18 @@ void setup() {
   for (int i = 0; i < 3; i++) {
     pinMode(row[i], INPUT_PULLDOWN);
   }
+
+  pinMode(led_mode, OUTPUT);
+  pinMode(led_debug, OUTPUT);
+
+
+  Serial.begin(115200);
+  digitalWrite(led_debug, HIGH);
+  while (!Serial && millis() < 1000);
+  digitalWrite(led_debug, LOW);
+  Serial.println("serial initialized");
+
+  Keyboard.begin(KeyboardLayout_de_DE);
 }
 
 void loop() {
