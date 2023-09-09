@@ -66,14 +66,27 @@ void loop() {
 
         //all other keys: press key according to keyMap
         default:
-          singleKeypress(i, j);
+          defaultKeypress(i, j);
           break;
       }
     }
   }
 }
 
-void singleKeypress(int i, int j) {
+void singleKeypress(int i, int j, int key) {
+  //send keypress if button is pressed
+  if (keysPressed[i][j]) {
+    if (!lastKeysPressed[i][j]) Serial.println("single keypress " + String(key));
+
+    Keyboard.press(key);
+
+  //if the key was pressed before, release it
+  } else if (lastKeysPressed[i][j]) {
+    Keyboard.release(key);
+  }
+}
+
+void defaultKeypress(int i, int j) {
   //send keypress if button is pressed
   if (keysPressed[i][j]) {
     if (!lastKeysPressed[i][j]) Serial.println("single keypress " + String(keyMap[j][i]));

@@ -3,3 +3,6 @@ Hardware/Keypad-Backups/
 
 #vscode environment settings
 .vscode/
+
+#personalized keypad layouts
+personalized/
