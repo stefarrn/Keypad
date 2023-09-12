@@ -90,7 +90,7 @@ case 2:
 ```
 where keycode is a either [an integer corrosponding to a key](https://theasciicode.com.ar/) or one of the following special keys:
 <details>
-    <summary>special keys</summary>
+    <summary>list of special keys</summary>
 
     KEY_LEFT_CTRL
     KEY_LEFT_SHIFT
@@ -178,7 +178,7 @@ case 2:
 (where 231 is an example):
 
 ```c
-case 1:
+case 2:
     numpadAscii(i, j, 231);
     break;
 ```

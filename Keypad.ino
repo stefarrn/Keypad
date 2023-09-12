@@ -42,7 +42,11 @@ void setup() {
 
   Serial.begin(115200);
   digitalWrite(led_debug, HIGH);
-  while (!Serial && millis() < 1000);
+
+  do {
+    updateKeysPressed();
+  } while (!Serial && millis() < 1000 || keysPressed[3][0]); //hold top right button to wait for serial connection
+
   digitalWrite(led_debug, LOW);
   Serial.println("serial initialized");
 
@@ -89,7 +93,7 @@ void singleKeypress(int i, int j, int key) {
 void defaultKeypress(int i, int j) {
   //send keypress if button is pressed
   if (keysPressed[i][j]) {
-    if (!lastKeysPressed[i][j]) Serial.println("single keypress " + String(keyMap[j][i]));
+    if (!lastKeysPressed[i][j]) Serial.println("default keypress " + String(i)+ ", " + String(j));
 
     Keyboard.press(keyMap[j][i]);
 
